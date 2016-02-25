@@ -41,15 +41,15 @@ function initMap() {
 // Create places2 object
   var places2 = {
     place1 : {
-      lat: 38.83,
-      lng: -104.825,
-      title: 'Colorado Springs'
+      lat: 38.8393738,
+      lng: -104.7959303,
+      title: 'US Olympic Training Center'
     },
 
     place2 : {
-      lat: 38.9,
-      lng: -104.8,
-      title: 'whocares'
+      lat: 38.8139668,
+      lng: -104.8400898,
+      title: 'Pure Bouldering Gym'
     }
   };
 

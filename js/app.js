@@ -47,7 +47,7 @@ function initMap() {
     },
 
     place2 : {
-      lat: 39,
+      lat: 38.9,
       lng: -104.8,
       title: 'whocares'
     }
@@ -76,8 +76,8 @@ function initMap() {
   // for (each in places2) {
   //   marker2(each.lat, each.lng, each.title);
   // }
-//Try another for loop.
-
-
-
+//Try another for loop using bracket notation. It works! Iterates through places2 and adds a marker for each!
+  for (each in places2) {
+    marker2(places2[each]['lat'], places2[each]['lng'], places2[each]['title']);
+  }
 }

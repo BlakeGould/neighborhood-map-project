@@ -99,3 +99,9 @@ function initMap() {
     marker2(places2[each]['lat'], places2[each]['lng'], places2[each]['title']);
   }
 }
+
+var main = function() {
+
+};
+
+$(document).ready(main);

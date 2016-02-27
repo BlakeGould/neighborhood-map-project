@@ -101,7 +101,7 @@ function initMap() {
 }
 
 var main = function() {
-
+ console.log("jquery is working!");
 };
 
 $(document).ready(main);

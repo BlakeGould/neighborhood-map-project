@@ -47,9 +47,27 @@ function initMap() {
     },
 
     place2 : {
-      lat: 38.8139668,
-      lng: -104.8400898,
+      lat: 38.813946,
+      lng: -104.839968,
       title: 'Pure Bouldering Gym'
+    },
+
+    place3 : {
+      lat: 38.810937,
+      lng: -104.827455,
+      title: "Principal's Office"
+    },
+
+    place4 : {
+      lat: 38.899094,
+      lng: -104.827324,
+      title: 'Sport Climbing Center'
+    },
+
+    place5 : {
+      lat: 38.835652,
+      lng: -104.821964,
+      title: "Brewer's Republic"
     }
   };
 

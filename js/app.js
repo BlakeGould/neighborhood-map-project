@@ -61,14 +61,23 @@ function ListViewModel () {
   // Create observable array to hold places
   viewPlaces = ko.observableArray([
     ]);
-
+  query = ko.observable('');
   // Populate viewPlaces observable array with names of places from The Model
   for (each in places) {
     self.viewPlaces.push({name: places[each]['title']})
   };
 
-  query = ko.observable('');
+  search = function(value) {
+    viewPlaces.removeAll();
 
+    if (value == '') return;
+
+    for (var place in viewPlaces) {
+      if (viewPlaces[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+          viewPlaces.push(places[place]);
+      }
+    }
+  }
 };
 
 ko.applyBindings(ListViewModel);

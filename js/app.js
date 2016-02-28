@@ -1,12 +1,3 @@
-//call for a map of Colorado Springs and add it to the DOM
-// var map;
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 38.83, lng: -104.825},
-      zoom: 12
-  });
-
-// Create places object
   var places = {
     place1 : {
       lat: 38.8393738,
@@ -38,6 +29,15 @@ function initMap() {
       title: "Brewer's Republic"
     }
   };
+
+
+//call for a map of Colorado Springs and add it to the DOM
+// var map;
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 38.83, lng: -104.825},
+      zoom: 12
+  });
 
 //Create marker function to be called by for loop
   var marker = function(lat, lng, title) {

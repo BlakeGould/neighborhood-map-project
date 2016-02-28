@@ -1,3 +1,4 @@
+// The Model storing place data
   var places = {
     place1 : {
       lat: 38.8393738,
@@ -31,7 +32,7 @@
   };
 
 
-//call for a map of Colorado Springs and add it to the DOM
+//The ViewModel for the map and markers
 // var map;
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -54,4 +55,17 @@ function initMap() {
   }
 }
 
-// ko.applyBindings(viewModel);
+// The ViewModel for the list and filter
+function ListViewModel () {
+
+  // Create observable array to hold places
+  viewPlaces = ko.observableArray([
+    ]);
+
+  // Populate viewPlaces observable array with names of places from The Model
+  for (each in places) {
+    self.viewPlaces.push({name: places[each]['title']})
+  }
+};
+
+ko.applyBindings(ListViewModel);

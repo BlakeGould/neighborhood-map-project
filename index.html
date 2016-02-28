@@ -7,8 +7,10 @@
   </head>
   <body>
     <div id="list">
-      <ul >
-        <li>Test li</li>
+      <ul data-bind="foreach: viewPlaces">
+        <li>
+          <span data-bind="text: name"></span>
+        </li>
       </ul>
     </div>
     <div id="map"></div>

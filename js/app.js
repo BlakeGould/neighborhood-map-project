@@ -40,7 +40,7 @@ function initMap() {
       zoom: 12
   });
 
-//Create marker function to be called by for loop
+// Create marker function to be called by for loop
   var marker = function(lat, lng, title) {
     new google.maps.Marker({
       position: {lat: lat, lng: lng},
@@ -53,7 +53,7 @@ function initMap() {
   for (each in places) {
     marker(places[each]['lat'], places[each]['lng'], places[each]['title']);
   }
-}
+};
 
 // The ViewModel for the list and filter
 function ListViewModel () {

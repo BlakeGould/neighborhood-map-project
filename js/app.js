@@ -1,35 +1,35 @@
 // The Model storing place data
-  var places = {
-    place1 : {
+  var places = [
+    {
       lat: 38.8393738,
       lng: -104.7959303,
       title: 'US Olympic Training Center'
     },
 
-    place2 : {
+    {
       lat: 38.813946,
       lng: -104.839968,
       title: 'Pure Bouldering Gym'
     },
 
-    place3 : {
+    {
       lat: 38.810937,
       lng: -104.827455,
       title: "Principal's Office"
     },
 
-    place4 : {
+    {
       lat: 38.899094,
       lng: -104.827324,
       title: 'Sport Climbing Center'
     },
 
-    place5 : {
+    {
       lat: 38.835652,
       lng: -104.821964,
       title: "Brewer's Republic"
     }
-  };
+  ];
 
 
 //The ViewModel for the map and markers

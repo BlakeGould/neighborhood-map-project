@@ -59,15 +59,17 @@ function initMap() {
 function ListViewModel () {
 
   // Create observable array to hold places
-  viewPlaces = ko.observableArray([
+  this.viewPlaces = ko.observableArray([
     ]);
-  query = ko.observable('');
+
   // Populate viewPlaces observable array with names of places from The Model
   for (each in places) {
     self.viewPlaces.push({name: places[each]['title']})
   };
 
-  search = function(value) {
+  this.query = ko.observable('');
+
+  this.search = function(value) {
     viewPlaces.removeAll();
 
     if (value == '') return;

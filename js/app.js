@@ -56,30 +56,35 @@ function initMap() {
 };
 
 // The ViewModel for the list and filter
-function ListViewModel () {
+var ListViewModel = {
 
   // Create observable array to hold places
-  this.viewPlaces = ko.observableArray([
-    ]);
+  viewPlaces: ko.observableArray([
+    ]),
 
   // Populate viewPlaces observable array with names of places from The Model
-  for (each in places) {
-    self.viewPlaces.push({name: places[each]['title']})
-  };
+  populate: function() {
+    for (each in places) {
+    ListViewModel.viewPlaces.push({name: places[each]['title']})
+    };
+  },
 
-  this.query = ko.observable('');
+  query: ko.observable(''),
 
-  this.search = function(value) {
-    viewPlaces.removeAll();
+  search: function(value) {
+    ListViewModel.viewPlaces.removeAll();
 
-    if (value == '') return;
+    // if (value == '') return;
 
-    for (var place in viewPlaces) {
-      if (viewPlaces[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-          viewPlaces.push(places[place]);
+    for (var place in places) {
+      if (places[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+          ListViewModel.viewPlaces.push({name: places[place]['title']});
       }
     }
   }
 };
 
+ListViewModel.populate();
+ListViewModel.query.subscribe(ListViewModel.search);
 ko.applyBindings(ListViewModel);
+

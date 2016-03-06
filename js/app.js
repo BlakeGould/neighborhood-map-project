@@ -55,20 +55,30 @@ function initMap() {
       content: title
     });
     marker.addListener('click', toggleBounce);
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
+    marker.addListener('click', toggleInfoWindow);
+
     markers.push(marker);
     console.log(markers);
 
-  function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-      marker.setAnimation(null);
-    } else {
-      marker.setAnimation(google.maps.Animation.BOUNCE);
+    // Allow infowindow to be toggled by marker click
+    var infoState = "Closed"
+    function toggleInfoWindow () {
+      if (infoState !== "Closed") {
+        infowindow.close();
+      } else {
+        infowindow.open(map, marker);
+        infoState = "Open";
+      }
     }
-  }
 
+    // Allow marker bounce to be toggled by marker click
+    function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+      } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    }
   };
 
 

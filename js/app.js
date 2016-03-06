@@ -1,35 +1,38 @@
 // The Model storing place data
-  var places = [
-    {
-      lat: 38.8393738,
-      lng: -104.7959303,
-      title: 'US Olympic Training Center'
-    },
+var places = [
+  {
+    lat: 38.8393738,
+    lng: -104.7959303,
+    title: 'US Olympic Training Center'
+  },
 
-    {
-      lat: 38.813946,
-      lng: -104.839968,
-      title: 'Pure Bouldering Gym'
-    },
+  {
+    lat: 38.813946,
+    lng: -104.839968,
+    title: 'Pure Bouldering Gym'
+  },
 
-    {
-      lat: 38.810937,
-      lng: -104.827455,
-      title: "Principal's Office"
-    },
+  {
+    lat: 38.810937,
+    lng: -104.827455,
+    title: "Principal's Office"
+  },
 
-    {
-      lat: 38.899094,
-      lng: -104.827324,
-      title: 'Sport Climbing Center'
-    },
+  {
+    lat: 38.899094,
+    lng: -104.827324,
+    title: 'Sport Climbing Center'
+  },
 
-    {
-      lat: 38.835652,
-      lng: -104.821964,
-      title: "Brewer's Republic"
-    }
-  ];
+  {
+    lat: 38.835652,
+    lng: -104.821964,
+    title: "Brewer's Republic"
+  }
+];
+
+
+var markers = []
 
 
 //The ViewModel for the map and markers
@@ -41,19 +44,22 @@ function initMap() {
   });
 
 // Create marker function to be called by for loop
-  var marker = function(lat, lng, title) {
-    new google.maps.Marker({
+  var addMarker = function(lat, lng, title) {
+    var marker = new google.maps.Marker({
       position: {lat: lat, lng: lng},
       map: map,
       title: title
-    })
+    });
+    markers.push(marker);
+    console.log(markers);
   };
 
 //Try another for loop using bracket notation. It works! Iterates through places2 and adds a marker for each!
   for (each in places) {
-    marker(places[each]['lat'], places[each]['lng'], places[each]['title']);
+    addMarker(places[each]['lat'], places[each]['lng'], places[each]['title']);
   }
 };
+
 
 // The ViewModel for the list and filter
 var ListViewModel = {
@@ -74,11 +80,26 @@ var ListViewModel = {
   search: function(value) {
     ListViewModel.viewPlaces.removeAll();
 
-    // if (value == '') return;
-
     for (var place in places) {
       if (places[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-          ListViewModel.viewPlaces.push({name: places[place]['title']});
+        ListViewModel.viewPlaces.push({name: places[place]['title']});
+        console.log("List updated");
+
+        //the next two functions hide the markers from the map
+        function setMapOnAll(map) {
+          for (var i = 0; i <markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+        function clearMarkers() {
+          setMapOnAll(null);
+          console.log("All set to null");
+        };
+        clearMarkers();
+
+        // This function reveals the appropriate markers based on search results
+
+
       }
     }
   }

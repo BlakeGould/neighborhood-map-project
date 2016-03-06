@@ -51,7 +51,13 @@ function initMap() {
       title: title,
       animation: google.maps.Animation.DROP
     });
+    var infowindow = new google.maps.InfoWindow({
+      content: title
+    });
     marker.addListener('click', toggleBounce);
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
     markers.push(marker);
     console.log(markers);
 

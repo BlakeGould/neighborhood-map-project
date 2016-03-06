@@ -48,11 +48,24 @@ function initMap() {
     var marker = new google.maps.Marker({
       position: {lat: lat, lng: lng},
       map: map,
-      title: title
+      title: title,
+      animation: google.maps.Animation.DROP
     });
+    marker.addListener('click', toggleBounce);
     markers.push(marker);
     console.log(markers);
+
+  function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+      marker.setAnimation(null);
+    } else {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
+
   };
+
+
 
 //Try another for loop using bracket notation. It works! Iterates through places2 and adds a marker for each!
   for (each in places) {

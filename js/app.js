@@ -31,14 +31,14 @@ var places = [
   }
 ];
 
-
-var markers = []
+var map;
+var markers = [];
 
 
 //The ViewModel for the map and markers
 // var map;
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 38.83, lng: -104.825},
       zoom: 12
   });
@@ -78,29 +78,38 @@ var ListViewModel = {
   query: ko.observable(''),
 
   search: function(value) {
+    var count = 0;
     ListViewModel.viewPlaces.removeAll();
+
+    //the next two functions hide the markers from the map
+    function setMapOnAll(map) {
+      for (var i = 0; i < markers.length; i++) {
+        markers[i].setMap(map);
+      }
+    }
+    function clearMarkers() {
+      setMapOnAll(null);
+      console.log("All set to null");
+    };
+    clearMarkers();
 
     for (var place in places) {
       if (places[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
         ListViewModel.viewPlaces.push({name: places[place]['title']});
         console.log("List updated");
 
-        //the next two functions hide the markers from the map
-        function setMapOnAll(map) {
-          for (var i = 0; i <markers.length; i++) {
-            markers[i].setMap(map);
-          }
+        // The next two functions reveal the appropriate markers based on search results
+        function setMapOnOne(map) {
+          markers[count].setMap(map);
         }
-        function clearMarkers() {
-          setMapOnAll(null);
-          console.log("All set to null");
+        function addMarker() {
+          setMapOnOne(map);
+          console.log("marker added");
         };
-        clearMarkers();
-
-        // This function reveals the appropriate markers based on search results
-
-
+        addMarker();
       }
+      count = count + 1;
+      console.log(count);
     }
   }
 };

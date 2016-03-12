@@ -15,7 +15,7 @@ var places = [
   {
     lat: 38.810937,
     lng: -104.827455,
-    title: "Principal's Office"
+    title: "The Principal's Office"
   },
 
   {
@@ -52,17 +52,17 @@ function initMap() {
       animation: google.maps.Animation.DROP
     });
     var infowindow = new google.maps.InfoWindow({
-      content: title
+      content: 'The weather at ' + title + ' is nice.'
     });
-    marker.addListener('click', toggleBounce);
-    marker.addListener('click', toggleInfoWindow);
+
+    marker.addListener('click', toggleMarker);
 
     markers.push(marker);
     console.log(markers);
 
-    // Allow infowindow to be toggled by marker click
+    // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed"
-    function toggleInfoWindow () {
+    function toggleMarker () {
       if (infoState !== "Closed") {
         infowindow.close();
         infoState = "Closed";
@@ -70,10 +70,7 @@ function initMap() {
         infowindow.open(map, marker);
         infoState = "Open";
       }
-    }
-
     // Allow marker bounce to be toggled by marker click
-    function toggleBounce() {
       if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
       } else {

@@ -7,12 +7,12 @@
   </head>
   <body>
     <div id="list">
-      <ul data-bind="foreach: viewPlaces">
+      <input placeholder="Search..." type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>     <ul data-bind="foreach: viewPlaces">
         <li>
           <span data-bind="text: name"></span>
         </li>
       </ul>
-      <input placeholder="Search..." type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>
+
     </div>
     <div id="map"></div>
     <script async defer

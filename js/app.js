@@ -52,23 +52,31 @@ function initMap() {
       animation: google.maps.Animation.DROP
     });
 
-    var weatherInfo;
+
     var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json"
+
+    var weatherInfo;
     $.ajax({
-      url: url,
-      dataType : "jsonp",
-      success : function( response ) {
-        console.log(response);
-        console.log(url);
-      }
-    });
+        url: url,
+        dataType : "jsonp",
+        success : function( parsed_json ) {
+          weatherInfo = parsed_json['current_observation']['weather'];
+          console.log(weatherInfo);
+          console.log(parsed_json);
+          console.log(url);
+
+
+
+        }
+      });
+
     var infowindow = new google.maps.InfoWindow({
-      content: 'The weather at ' + title + ' is nice.'
+      content: 'The weather at ' + title + ' is ' + weatherInfo + "."
     });
 
     marker.addListener('click', toggleMarker);
 
-
+    // console.log(weatherInfo + "2");
 
     // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed"
@@ -95,7 +103,7 @@ function initMap() {
 
 
 
-//Try another for loop using bracket notation. It works! Iterates through places2 and adds a marker for each!
+//Try another for loop using bracket notation. It works! Iterates through places and adds a marker for each!
   for (each in places) {
     addMarker(places[each]['lat'], places[each]['lng'], places[each]['title']);
   }

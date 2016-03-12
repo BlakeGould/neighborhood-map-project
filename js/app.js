@@ -65,6 +65,7 @@ function initMap() {
     function toggleInfoWindow () {
       if (infoState !== "Closed") {
         infowindow.close();
+        infoState = "Closed";
       } else {
         infowindow.open(map, marker);
         infoState = "Open";

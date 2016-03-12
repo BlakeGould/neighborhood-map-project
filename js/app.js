@@ -52,31 +52,14 @@ function initMap() {
       animation: google.maps.Animation.DROP
     });
 
-
-    var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json"
-
-    var weatherInfo;
-    $.ajax({
-        url: url,
-        dataType : "jsonp",
-        success : function( parsed_json ) {
-          weatherInfo = parsed_json['current_observation']['weather'];
-          console.log(weatherInfo);
-          console.log(parsed_json);
-          console.log(url);
-
-
-
-        }
-      });
+    var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json";
 
     var infowindow = new google.maps.InfoWindow({
-      content: 'The weather at ' + title + ' is ' + weatherInfo + "."
+      // content: 'The weather at ' + title + ' is ' + weatherInfo + "."
+      content: null
     });
 
     marker.addListener('click', toggleMarker);
-
-    // console.log(weatherInfo + "2");
 
     // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed"
@@ -86,6 +69,19 @@ function initMap() {
         infowindow.close();
         infoState = "Closed";
       } else {
+        // Get up to the minute weather from Weather Underground. Calling this onclick instead of onload is less performant, but I like that it gives the benefit of more current weather info if the page has been open for awhile.
+        $.ajax({
+          url: url,
+          dataType : "jsonp",
+          success : function( parsed_json ) {
+           weatherInfo = 'The weather at ' + title + ' is ' +parsed_json['current_observation']['weather'] + '.';
+           console.log(weatherInfo);
+           console.log(parsed_json);
+           console.log(url);
+           infowindow.setContent(weatherInfo);
+          }
+        });
+        // infowindow.setContent("TEST CONTENT");
         infowindow.open(map, marker);
         infoState = "Open";
       }
@@ -97,6 +93,7 @@ function initMap() {
       }
     }
 
+    // console.log(weatherInfo + "2");
     markers.push(marker);
     console.log(markers);
   };

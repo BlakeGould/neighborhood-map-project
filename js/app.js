@@ -1,9 +1,9 @@
 // The Model storing place data
 var places = [
   {
-    lat: 38.8393738,
-    lng: -104.7959303,
-    title: 'US Olympic Training Center'
+    lat:  39.75377,
+    lng:  -105.24013,
+    title: 'Clear Creek Canyon'
   },
 
   {
@@ -13,21 +13,21 @@ var places = [
   },
 
   {
-    lat: 38.810937,
-    lng: -104.827455,
-    title: "The Principal's Office"
+    lat: 38.266605,
+    lng: -105.187888,
+    title: "Newlin Creek Trailhead"
   },
 
   {
-    lat: 38.899094,
-    lng: -104.827324,
-    title: 'Sport Climbing Center'
+    lat: 38.728570,
+    lng: -104.882980,
+    title: '369'
   },
 
   {
-    lat: 38.835652,
-    lng: -104.821964,
-    title: "Brewer's Republic"
+    lat: 40.3753,
+    lng: -105.616,
+    title: "Rocky Mountain National Park"
   }
 ];
 
@@ -39,8 +39,8 @@ var markers = [];
 // var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 38.83, lng: -104.825},
-      zoom: 12
+      center: {lat: 39.1, lng: -104.992474},
+      zoom: 8
   });
 
 // Create marker function to be called by for loop
@@ -51,18 +51,29 @@ function initMap() {
       title: title,
       animation: google.maps.Animation.DROP
     });
+
+    var weatherInfo;
+    var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json"
+    $.ajax({
+      url: url,
+      dataType : "jsonp",
+      success : function( response ) {
+        console.log(response);
+        console.log(url);
+      }
+    });
     var infowindow = new google.maps.InfoWindow({
       content: 'The weather at ' + title + ' is nice.'
     });
 
     marker.addListener('click', toggleMarker);
 
-    markers.push(marker);
-    console.log(markers);
+
 
     // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed"
     function toggleMarker () {
+      // toggle info window on marker click
       if (infoState !== "Closed") {
         infowindow.close();
         infoState = "Closed";
@@ -70,13 +81,16 @@ function initMap() {
         infowindow.open(map, marker);
         infoState = "Open";
       }
-    // Allow marker bounce to be toggled by marker click
+      // toggle bounce on marker click
       if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
       } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
       }
     }
+
+    markers.push(marker);
+    console.log(markers);
   };
 
 

@@ -40,7 +40,7 @@ var markers = [];
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 39.1, lng: -104.992474},
-      zoom: 8
+      zoom: 7
   });
 
 // Create marker function to be called by for loop

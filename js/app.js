@@ -62,7 +62,7 @@ function initMap() {
     marker.addListener('click', toggleMarker);
 
     // Allow infowindow and marker bounce to be toggled by marker click
-    var infoState = "Closed"
+    var infoState = "Closed";
     function toggleMarker () {
       // toggle info window on marker click
       if (infoState !== "Closed") {
@@ -104,7 +104,7 @@ function initMap() {
   for (each in places) {
     addMarker(places[each]['lat'], places[each]['lng'], places[each]['title']);
   }
-};
+}
 
 
 // The ViewModel for the list and filter
@@ -117,8 +117,8 @@ var ListViewModel = {
   // Populate viewPlaces observable array with names of places from The Model
   populate: function() {
     for (each in places) {
-    ListViewModel.viewPlaces.push({name: places[each]['title']})
-    };
+    ListViewModel.viewPlaces.push({name: places[each]['title']});
+    }
   },
 
   query: ko.observable(''),
@@ -136,7 +136,7 @@ var ListViewModel = {
     function clearMarkers() {
       setMapOnAll(null);
       console.log("All set to null");
-    };
+    }
     clearMarkers();
 
     for (var place in places) {
@@ -151,7 +151,7 @@ var ListViewModel = {
         function addMarker() {
           setMapOnOne(map);
           console.log("marker added");
-        };
+        }
         addMarker();
       }
       count = count + 1;

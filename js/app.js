@@ -164,3 +164,7 @@ ListViewModel.populate();
 ListViewModel.query.subscribe(ListViewModel.search);
 ko.applyBindings(ListViewModel);
 
+var googleError = function () {
+  alert("Google maps failed to load");
+};
+

@@ -72,7 +72,7 @@ function initMap() {
         // Get up to the minute weather from Weather Underground. Calling this onclick instead of onload is less performant, but I like that it gives the benefit of more current weather info if the page has been open for awhile.
         $.ajax({
           url: url,
-          dataType : "jsonp",
+          dataType : "json",
           success : function( parsed_json ) {
            weatherInfo = 'The weather at ' + title + ' is ' +parsed_json['current_observation']['weather'] + '.';
            console.log(weatherInfo);

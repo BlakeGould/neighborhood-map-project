@@ -80,7 +80,11 @@ function initMap() {
            console.log(url);
            infowindow.setContent(weatherInfo);
           }
+        })
+        .fail(function() {
+          alert( "Weather Underground failed to return weather info!");
         });
+
         // infowindow.setContent("TEST CONTENT");
         infowindow.open(map, marker);
         infoState = "Open";

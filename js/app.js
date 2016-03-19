@@ -108,6 +108,8 @@ function initMap() {
   for (each in places) {
     addMarker(places[each]['lat'], places[each]['lng'], places[each]['title']);
   }
+
+ko.applyBindings(ListViewModel);
 }
 
 

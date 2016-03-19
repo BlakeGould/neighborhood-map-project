@@ -34,6 +34,10 @@ var places = [
 var map;
 var markers = [];
 
+function listClick() {
+  console.log("The list was clicked!");
+};
+
 
 //The ViewModel for the map and markers
 // var map;
@@ -168,7 +172,7 @@ var ListViewModel = {
 
 ListViewModel.populate();
 ListViewModel.query.subscribe(ListViewModel.search);
-ko.applyBindings(ListViewModel);
+// ko.applyBindings(ListViewModel);
 
 var googleError = function () {
   alert("Google maps failed to load");

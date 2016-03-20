@@ -40,7 +40,7 @@ var map;
 var markers = [];
 
 function listClick(data) {
-  console.log("The list was clicked and " + data + "was passed from it.");
+  console.log("The list was clicked and " + data + " was passed from it.");
   google.maps.event.trigger(markers[data], 'click');
 };
 
@@ -79,10 +79,12 @@ function initMap() {
     // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed";
     function toggleMarker () {
+      console.log("the infostate is "+ infoState)
       // toggle info window on marker click
       if (infoState !== "Closed") {
         infowindow.close();
         infoState = "Closed";
+        console.log("The infowindow for " + title + " was closed.");
       } else {
         // Get up to the minute weather from Weather Underground. Calling this onclick instead of onload is less performant, but I like that it gives the benefit of more current weather info if the page has been open for awhile.
         $.ajax({
@@ -90,9 +92,9 @@ function initMap() {
           dataType : "json",
           success : function( parsed_json ) {
            weatherInfo = 'The weather at ' + title + ' is ' +parsed_json['current_observation']['weather'] + '.';
-           console.log(weatherInfo);
+           // console.log(weatherInfo);
            console.log(parsed_json);
-           console.log(url);
+           // console.log(url);
            infowindow.setContent(weatherInfo);
           }
         })
@@ -100,15 +102,17 @@ function initMap() {
           alert( "Weather Underground failed to return weather info!");
         });
 
-        // infowindow.setContent("TEST CONTENT");
         infowindow.open(map, marker);
         infoState = "Open";
+        console.log("The infowindow for " + title + " was opened.");
       }
       // toggle bounce on marker click
       if (marker.getAnimation() !== null) {
         marker.setAnimation(null);
+        console.log("the animation was set to null");
       } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
+        console.log("the animation was set to bounce");
       }
     }
 
@@ -139,10 +143,7 @@ var ListViewModel = {
   populate: function() {
     // var num = 0;
     for (each in places) {
-      // console.log(num);
     ListViewModel.viewPlaces.push({name: places[each]['title'], idNum: places[each]['id']});
-    // num = num + 1
-    // console.log(num);
     }
   },
 

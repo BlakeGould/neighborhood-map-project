@@ -3,46 +3,51 @@ var places = [
   {
     lat:  39.75377,
     lng:  -105.24013,
-    title: 'Clear Creek Canyon'
+    title: 'Clear Creek Canyon',
+    id: 0
   },
 
   {
     lat: 38.813946,
     lng: -104.839968,
-    title: 'Pure Bouldering Gym'
+    title: 'Pure Bouldering Gym',
+    id: 1
   },
 
   {
     lat: 38.266605,
     lng: -105.187888,
-    title: "Newlin Creek Trailhead"
+    title: "Newlin Creek Trailhead",
+    id: 2
   },
 
   {
     lat: 38.728570,
     lng: -104.882980,
-    title: '369'
+    title: '369',
+    id: 3
   },
 
   {
     lat: 40.3753,
     lng: -105.616,
-    title: "Rocky Mountain National Park"
+    title: "Rocky Mountain National Park",
+    id: 4
   }
 ];
 
 var map;
 var markers = [];
 
-// function listClick(data) {
-//   console.log("The list was clicked and " + data + "was passed from it.");
-//   google.maps.event.trigger(markers[data], 'click');
-// };
-
 function listClick(data) {
   console.log("The list was clicked and " + data + "was passed from it.");
-  google.maps.event.trigger(markers[3], 'click');
+  google.maps.event.trigger(markers[data], 'click');
 };
+
+// function listClick(data) {
+//   console.log("The list was clicked and " + data + "was passed from it.");
+//   google.maps.event.trigger(markers[3], 'click');
+// };
 
 
 //The ViewModel for the map and markers
@@ -132,11 +137,11 @@ var ListViewModel = {
 
   // Populate viewPlaces observable array with names of places from The Model
   populate: function() {
-    var num = 0;
+    // var num = 0;
     for (each in places) {
       // console.log(num);
-    ListViewModel.viewPlaces.push({name: places[each]['title'], idNum: num});
-    num = num + 1
+    ListViewModel.viewPlaces.push({name: places[each]['title'], idNum: places[each]['id']});
+    // num = num + 1
     // console.log(num);
     }
   },
@@ -161,7 +166,7 @@ var ListViewModel = {
 
     for (var place in places) {
       if (places[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-        ListViewModel.viewPlaces.push({name: places[place]['title']});
+        ListViewModel.viewPlaces.push({name: places[place]['title'], idNum: places[place]['id']});
         console.log("List updated");
 
         // The next two functions reveal the appropriate markers based on search results

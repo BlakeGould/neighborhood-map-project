@@ -10,8 +10,8 @@
     <div id="list">
       <input placeholder="Search..." type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"/>     <ul data-bind="foreach: viewPlaces">
         <li>
-          <!-- <span data-bind="text: name, click: listClick($data.idNum)"></span> -->
-          <span data-bind="text: name, click: listClick"></span>
+          <span data-bind="text: name, click: listClick($data.idNum)"></span>
+          <!-- <span data-bind="text: name, click: listClick"></span> -->
         </li>
       </ul>
 

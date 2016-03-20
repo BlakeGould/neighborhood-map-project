@@ -36,6 +36,7 @@ var markers = [];
 
 function listClick() {
   console.log("The list was clicked!");
+  google.maps.event.trigger(markers[0], 'click');
 };
 
 

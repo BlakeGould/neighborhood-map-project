@@ -36,7 +36,7 @@ var markers = [];
 
 function listClick(data) {
   console.log("The list was clicked and " + data + "was passed from it.");
-  google.maps.event.trigger(markers[0], 'click');
+  google.maps.event.trigger(markers[data], 'click');
 };
 
 

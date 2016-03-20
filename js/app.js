@@ -34,9 +34,14 @@ var places = [
 var map;
 var markers = [];
 
+// function listClick(data) {
+//   console.log("The list was clicked and " + data + "was passed from it.");
+//   google.maps.event.trigger(markers[data], 'click');
+// };
+
 function listClick(data) {
   console.log("The list was clicked and " + data + "was passed from it.");
-  google.maps.event.trigger(markers[data], 'click');
+  google.maps.event.trigger(markers[3], 'click');
 };
 
 

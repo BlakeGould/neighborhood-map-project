@@ -127,8 +127,12 @@ var ListViewModel = {
 
   // Populate viewPlaces observable array with names of places from The Model
   populate: function() {
+    var num = 0;
     for (each in places) {
-    ListViewModel.viewPlaces.push({name: places[each]['title']});
+      // console.log(num);
+    ListViewModel.viewPlaces.push({name: places[each]['title'], idNum: num});
+    num = num + 1
+    // console.log(num);
     }
   },
 

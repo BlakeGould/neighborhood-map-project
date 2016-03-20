@@ -34,8 +34,8 @@ var places = [
 var map;
 var markers = [];
 
-function listClick() {
-  console.log("The list was clicked!");
+function listClick(data) {
+  console.log("The list was clicked and " + data + "was passed from it.");
   google.maps.event.trigger(markers[0], 'click');
 };
 

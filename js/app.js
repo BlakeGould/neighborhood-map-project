@@ -58,6 +58,9 @@ function initMap() {
       zoom: 7
   });
 
+  var infowindow = new google.maps.InfoWindow({
+    content: null
+  });
 // Create marker function to be called by for loop
   var addMarker = function(lat, lng, title) {
     var marker = new google.maps.Marker({
@@ -69,10 +72,10 @@ function initMap() {
 
     var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json";
 
-    var infowindow = new google.maps.InfoWindow({
-      // content: 'The weather at ' + title + ' is ' + weatherInfo + "."
-      content: null
-    });
+    // var infowindow = new google.maps.InfoWindow({
+    //   // content: 'The weather at ' + title + ' is ' + weatherInfo + "."
+    //   content: null
+    // });
 
     marker.addListener('click', toggleMarker);
 
@@ -96,13 +99,14 @@ function initMap() {
            console.log(parsed_json);
            // console.log(url);
            infowindow.setContent(weatherInfo);
+           infowindow.open(map, marker);
           }
         })
         .fail(function() {
           alert( "Weather Underground failed to return weather info!");
         });
 
-        infowindow.open(map, marker);
+        // infowindow.open(map, marker);
         infoState = "Open";
         console.log("The infowindow for " + title + " was opened.");
 

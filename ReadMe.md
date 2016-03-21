@@ -5,8 +5,5 @@ Using the app:
 - Type in the search box to refine results, delete characters to expand results.
 - Once you know the current weather, pick a crag and go climb!
 
-Design Decisions:
-- Simultaneous display of multiple infoWindows is allowed so that the user can compare weather conditions of multiple crags at the same time.
-
 Feedback:
 Contact gouldbf@gmail.com with feedback.

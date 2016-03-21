@@ -7,7 +7,6 @@ Using the app:
 
 Design Decisions:
 - Simultaneous display of multiple infoWindows is allowed so that the user can compare weather conditions of multiple crags at the same time.
-- Marker bounce is set to toggle instead of timeout as a visual reminder of which crags the user has already checked the weather for.
 
 Feedback:
 Contact gouldbf@gmail.com with feedback.

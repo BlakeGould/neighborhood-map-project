@@ -105,14 +105,7 @@ function initMap() {
         infowindow.open(map, marker);
         infoState = "Open";
         console.log("The infowindow for " + title + " was opened.");
-      }
 
-
-      // toggle bounce on marker click
-      if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-        console.log("the animation was set to null");
-      } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
         console.log("the animation was set to bounce");
         setTimeout(function() {
@@ -120,6 +113,20 @@ function initMap() {
           console.log("The timer set the animation to null");
         }, 2500);
       }
+
+
+      // toggle bounce on marker click
+      // if (marker.getAnimation() !== null) {
+      //   marker.setAnimation(null);
+      //   console.log("the animation was set to null");
+      // } else {
+      //   marker.setAnimation(google.maps.Animation.BOUNCE);
+      //   console.log("the animation was set to bounce");
+      //   setTimeout(function() {
+      //     marker.setAnimation(null);
+      //     console.log("The timer set the animation to null");
+      //   }, 2500);
+      // }
     }
 
     // console.log(weatherInfo + "2");

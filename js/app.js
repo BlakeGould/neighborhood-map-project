@@ -44,14 +44,7 @@ function listClick(data) {
   google.maps.event.trigger(markers[data], 'click');
 };
 
-// function listClick(data) {
-//   console.log("The list was clicked and " + data + "was passed from it.");
-//   google.maps.event.trigger(markers[3], 'click');
-// };
-
-
 //The ViewModel for the map and markers
-// var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 39.5, lng: -104.992474},
@@ -71,11 +64,6 @@ function initMap() {
     });
 
     var url = "http://api.wunderground.com/api/8fd73a2ecd844c74/geolookup/conditions/forecaset/q/" + lat + "," + lng + ".json";
-
-    // var infowindow = new google.maps.InfoWindow({
-    //   // content: 'The weather at ' + title + ' is ' + weatherInfo + "."
-    //   content: null
-    // });
 
     marker.addListener('click', toggleMarker);
 
@@ -106,7 +94,6 @@ function initMap() {
           alert( "Weather Underground failed to return weather info!");
         });
 
-        // infowindow.open(map, marker);
         infoState = "Open";
         console.log("The infowindow for " + title + " was opened.");
 
@@ -117,22 +104,7 @@ function initMap() {
           console.log("The timer set the animation to null");
         }, 2500);
       }
-
-
-      // toggle bounce on marker click
-      // if (marker.getAnimation() !== null) {
-      //   marker.setAnimation(null);
-      //   console.log("the animation was set to null");
-      // } else {
-      //   marker.setAnimation(google.maps.Animation.BOUNCE);
-      //   console.log("the animation was set to bounce");
-      //   setTimeout(function() {
-      //     marker.setAnimation(null);
-      //     console.log("The timer set the animation to null");
-      //   }, 2500);
-      // }
     }
-
     // console.log(weatherInfo + "2");
     markers.push(marker);
     console.log(markers);
@@ -158,7 +130,6 @@ var ListViewModel = {
 
   // Populate viewPlaces observable array with names of places from The Model
   populate: function() {
-    // var num = 0;
     for (each in places) {
     ListViewModel.viewPlaces.push({name: places[each]['title'], idNum: places[each]['id']});
     }
@@ -205,7 +176,6 @@ var ListViewModel = {
 
 ListViewModel.populate();
 ListViewModel.query.subscribe(ListViewModel.search);
-// ko.applyBindings(ListViewModel);
 
 var googleError = function () {
   alert("Google maps failed to load");

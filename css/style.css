@@ -5,8 +5,14 @@ body {
   padding 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
 #list {
   height: 25%;
+  color: white;
+  background-color: #003399;
 }
 
 #map {

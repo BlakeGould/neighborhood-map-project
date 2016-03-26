@@ -40,7 +40,6 @@ var map;
 var markers = [];
 
 function listClick(data) {
-  console.log("The list was clicked and " + data + " was passed from it.");
   google.maps.event.trigger(markers[data], 'click');
 };
 
@@ -70,12 +69,10 @@ function initMap() {
     // Allow infowindow and marker bounce to be toggled by marker click
     var infoState = "Closed";
     function toggleMarker () {
-      console.log("the infostate is "+ infoState)
       // toggle info window on marker click
       if (infoState !== "Closed") {
         infowindow.close();
         infoState = "Closed";
-        console.log("The infowindow for " + title + " was closed.");
       } else {
         // Get up to the minute weather from Weather Underground. Calling this onclick instead of onload is less performant, but I like that it gives the benefit of more current weather info if the page has been open for awhile.
         $.ajax({
@@ -83,9 +80,6 @@ function initMap() {
           dataType : "json",
           success : function( parsed_json ) {
            weatherInfo = 'The weather at ' + title + ' is ' +parsed_json['current_observation']['weather'] + '.';
-           // console.log(weatherInfo);
-           console.log(parsed_json);
-           // console.log(url);
            infowindow.setContent(weatherInfo);
            infowindow.open(map, marker);
           }
@@ -95,19 +89,13 @@ function initMap() {
         });
 
         infoState = "Open";
-        console.log("The infowindow for " + title + " was opened.");
-
         marker.setAnimation(google.maps.Animation.BOUNCE);
-        console.log("the animation was set to bounce");
         setTimeout(function() {
           marker.setAnimation(null);
-          console.log("The timer set the animation to null");
         }, 2500);
       }
     }
-    // console.log(weatherInfo + "2");
     markers.push(marker);
-    console.log(markers);
   };
 
 
@@ -149,14 +137,12 @@ var ListViewModel = {
     }
     function clearMarkers() {
       setMapOnAll(null);
-      console.log("All set to null");
     }
     clearMarkers();
 
     for (var place in places) {
       if (places[place].title.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
         ListViewModel.viewPlaces.push({name: places[place]['title'], idNum: places[place]['id']});
-        console.log("List updated");
 
         // The next two functions reveal the appropriate markers based on search results
         function setMapOnOne(map) {
@@ -164,12 +150,10 @@ var ListViewModel = {
         }
         function addMarker() {
           setMapOnOne(map);
-          console.log("marker added");
         }
         addMarker();
       }
       count = count + 1;
-      console.log(count);
     }
   }
 };
